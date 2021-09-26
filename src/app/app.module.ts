@@ -6,6 +6,8 @@ import {StoreModule} from "@ngrx/store";
 import {bmiReducer} from "../reducers/bmi.reducers";
 import {EffectsModule} from "@ngrx/effects";
 import {BmiEffects} from "../effects/bmi.effects";
+import {MyMath} from "../lib/MyMath";
+import {AbstractMath} from "../logic/AbstractMath";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {BmiEffects} from "../effects/bmi.effects";
     }),
     EffectsModule.forRoot([BmiEffects])
   ],
-  providers: [],
+  providers: [
+    {provide: AbstractMath, useClass: MyMath}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
