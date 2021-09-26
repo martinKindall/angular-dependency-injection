@@ -42,7 +42,7 @@
       <div class="row mt-sm-4">
         <div class="col-4"></div>
         <div class="col-4">
-          <p class="h3 font-weight-bold">BMI: {{bmiResult$ | async}}</p>
+          <p class="h3 font-weight-bold">BMI: {{bmiResult$ | async | number:'1.1-4'}}</p>
         </div>
         <div class="col-4"></div>
       </div>

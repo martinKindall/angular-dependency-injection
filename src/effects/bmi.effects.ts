@@ -4,7 +4,7 @@ import {catchError, map} from "rxjs/operators";
 import {BMI} from "../logic/BMI";
 import {BodyData} from "../interfaces/BodyData";
 import {EMPTY} from "rxjs";
-import {updateBMI} from "../actions/bmi.actions";
+import {bmiActions, updateBMI} from "../actions/bmi.actions";
 
 @Injectable()
 export class BmiEffects {
@@ -15,7 +15,7 @@ export class BmiEffects {
   }
 
   calculateBMI$ = createEffect(() => this.actions$.pipe(
-      ofType('bmi calculate'),
+      ofType(bmiActions.bmiCalculate),
       map((bodyData: BodyData) => {
         const bmi = this.bmiLogic.calculate(bodyData);
         return updateBMI(bmi) as any;
