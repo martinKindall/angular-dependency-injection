@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AbstractMath} from "../logic/AbstractMath";
+import * as math from "mathjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,10 @@ import {AbstractMath} from "../logic/AbstractMath";
 export class MyMath implements AbstractMath {
 
   divide(a: number, b: number): number {
-    return a / b;
+    return math.divide(a, b);
   }
 
   square(a: number): number {
-    return a * a;
+    return math.square(a);
   }
 }
