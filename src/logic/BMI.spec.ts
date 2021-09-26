@@ -11,10 +11,14 @@ describe('BMI logic tests', () => {
     );
     bmiService = new BMI(mathServiceSpy);
 
-    mathServiceSpy.square.and.returnValue(2.9929);
-    mathServiceSpy.divide.and.returnValue(22.2222);
+    const heightSquared = 2.9929;
+    const bmi = 22.2222;
+    const weight = 68;
+    mathServiceSpy.square.and.returnValue(heightSquared);
+    mathServiceSpy.divide.and.returnValue(bmi);
 
-    expect(bmiService.calculate({weight: 68, height: 173}))
-      .toEqual({bmiResult: 22.2222});
+    expect(bmiService.calculate({weight: weight, height: 173}))
+      .toEqual({bmiResult: bmi});
+    expect(mathServiceSpy.divide).toHaveBeenCalledWith(weight as any, heightSquared as any);
   });
 });
