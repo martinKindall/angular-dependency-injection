@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BMIStore} from "../interfaces/BMIStore";
+import {BMIResult} from "../interfaces/BMIResult";
 import {Store} from "@ngrx/store";
 import {calculateBMI} from "../actions/bmi.actions";
 
@@ -12,7 +12,10 @@ export class AppComponent {
   weight?: number;
   height?: number;
 
-  constructor(private store: Store<{bmiState: BMIStore}>) {
+  constructor(private store: Store<{bmiState: BMIResult}>) {
+    store.select(({bmiState}) => {
+      console.log(bmiState);
+    }).subscribe();
   }
 
   calculate() {

@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {BodyData} from "../interfaces/BodyData";
-import {BMIStore} from "../interfaces/BMIStore";
+import {BMIResult} from "../interfaces/BMIResult";
 
 export const calculateBMI = createAction(
   'bmi calculate',
@@ -9,5 +9,5 @@ export const calculateBMI = createAction(
 
 export const updateBMI = createAction(
   'bmi update',
-  props<BMIStore>()
+  props<BMIResult>()
 );

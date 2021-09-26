@@ -1,16 +1,16 @@
-import {BMIStore} from "../interfaces/BMIStore";
+import {BMIResult} from "../interfaces/BMIResult";
 import {Action, createReducer, on} from "@ngrx/store";
 import {updateBMI} from "../actions/bmi.actions";
 
-export const initialBMI: BMIStore = {bmiResult: 0};
+export const initialBMI: BMIResult = {bmiResult: 0};
 
 const myBMIReducer = createReducer(
   initialBMI,
-  on(updateBMI, (state: BMIStore, props: BMIStore) => {
+  on(updateBMI, (state: BMIResult, props: BMIResult) => {
     return props;
   })
 );
 
-export function bmiReducer(state: BMIStore, action: Action): BMIStore {
+export function bmiReducer(state: BMIResult, action: Action): BMIResult {
   return myBMIReducer(state, action);
 }
