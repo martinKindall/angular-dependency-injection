@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {BMIResult} from "../interfaces/BMIResult";
 import {Store} from "@ngrx/store";
 import {calculateBMI} from "../actions/bmi.actions";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,16 +10,20 @@ import {calculateBMI} from "../actions/bmi.actions";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  weight?: number;
-  height?: number;
+  weight?: string;
+  height?: string;
+  bmiResult$: Observable<number>;
 
   constructor(private store: Store<{bmiState: BMIResult}>) {
-    store.select(({bmiState}) => {
-      console.log(bmiState);
-    }).subscribe();
+    this.bmiResult$ = store.select(({bmiState}) => {
+      return bmiState.bmiResult;
+    });
   }
 
   calculate() {
-    this.store.dispatch(calculateBMI({weight: 1, height: 1}));
+    this.store.dispatch(calculateBMI({
+      weight: parseFloat(this.weight),
+      height: parseFloat(this.height) / 100.0
+    }));
   }
 }

@@ -1,42 +1,51 @@
 <div id="home">
-  <div class="container text-center text-white">
-    <div class="row my-4">
-      <div class="col-12">
-        <h1>Body Mass Index</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-5"></div>
-      <div class="col-2">
-        <div class="form-group">
-          <label for="weight_amount">Enter your weight (Kg)</label>
-          <input type="number"
-                 class="form-control"
-                 id="weight_amount" name="quantity"
-                 min="30" step="1" (change)="weight = $event.target.value">
+  <div class="container container-fluid text-center text-white">
+    <div class="col-sm-12">
+      <div class="row my-2">
+        <div class="col-12">
+          <h1>Body Mass Index</h1>
         </div>
       </div>
-      <div class="col-5"></div>
-    </div>
-    <div class="row">
-      <div class="col-5"></div>
-      <div class="col-2">
-        <div class="form-group">
-          <label for="height_amount">Enter your height (cm)</label>
-          <input type="number"
-                 class="form-control"
-                 id="height_amount" name="quantity"
-                 min="130" step="1" (change)="height = $event.target.value">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="weight_amount">Enter your weight (Kg)</label>
+            <input type="number"
+                   class="form-control"
+                   id="weight_amount" name="quantity"
+                   min="30" step="1" (change)="weight = $event.target.value">
+          </div>
         </div>
+        <div class="col-4"></div>
       </div>
-      <div class="col-5"></div>
-    </div>
-    <div class="row my-2">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <button type="button" class="btn btn-success" (click)="calculate()">Calculate</button>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="height_amount">Enter your height (cm)</label>
+            <input type="number"
+                   class="form-control"
+                   id="height_amount" name="quantity"
+                   min="130" step="1" (change)="height = $event.target.value">
+          </div>
+        </div>
+        <div class="col-4"></div>
       </div>
-      <div class="col-4"></div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <button type="button" class="btn btn-success" (click)="calculate()">Calculate</button>
+        </div>
+        <div class="col-4"></div>
+      </div>
+      <div class="row mt-sm-4">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <p class="h3 font-weight-bold">BMI: {{bmiResult$ | async}}</p>
+        </div>
+        <div class="col-4"></div>
+      </div>
     </div>
   </div>
 </div>

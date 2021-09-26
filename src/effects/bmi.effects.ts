@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
-import {Actions, ofType} from "@ngrx/effects";
-import {map, tap} from "rxjs/operators";
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {catchError, map} from "rxjs/operators";
 import {BMI} from "../logic/BMI";
 import {BodyData} from "../interfaces/BodyData";
+import {EMPTY} from "rxjs";
+import {updateBMI} from "../actions/bmi.actions";
 
 @Injectable()
 export class BmiEffects {
@@ -12,14 +14,12 @@ export class BmiEffects {
     ) {
   }
 
-  calculateBMI$ = this.actions$.pipe(
-    ofType('bmi calculate'),
-    map((bodyData: BodyData) => {
-      const bmi = this.bmiLogic.calculate(bodyData);
-      return {
-        type: 'bmi update',
-        ...bmi
-      };
-    })
-  ).subscribe();
+  calculateBMI$ = createEffect(() => this.actions$.pipe(
+      ofType('bmi calculate'),
+      map((bodyData: BodyData) => {
+        const bmi = this.bmiLogic.calculate(bodyData);
+        return updateBMI(bmi) as any;
+      }),
+      catchError(() => EMPTY)
+    ));
 }
